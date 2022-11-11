@@ -14,11 +14,11 @@ class MyNoteApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'FF R-02 Notepad',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Notepad'),
     );
   }
 }
@@ -46,6 +46,16 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        actions: [
+          IconButton(
+            onPressed: (){}, 
+            icon: Icon(Icons.search),
+          ),
+          IconButton(
+            onPressed: (){}, 
+            icon: Icon(Icons.more_horiz),
+          )
+        ],
       ),
       body: Center(
         child: Column(
