@@ -24,7 +24,7 @@ class MyNoteApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({super.key, required this.title,});
 
   final String title;
 
@@ -33,52 +33,34 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        actions: [
-          IconButton(
-            onPressed: (){}, 
-            icon: Icon(Icons.search),
-          ),
-          IconButton(
-            onPressed: (){}, 
-            icon: Icon(Icons.more_horiz),
-          )
-        ],
-        flexibleSpace: Image.asset(
-          "assets/AppBar-Background.jpg", 
-          fit:BoxFit.cover,
-        ),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(          
+          title: Text(widget.title),
+          actions: [
+            IconButton(
+              onPressed: (){}, 
+              icon: Icon(Icons.search),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+            IconButton(
+              onPressed: (){}, 
+              icon: Icon(Icons.more_horiz),
+            )
           ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+          flexibleSpace: Image.asset(
+            "assets/AppBar-Background.jpg", 
+            fit:BoxFit.cover,
+          ),
+          bottom: const TabBar(
+            tabs: [
+              Tab(icon: Icon(Icons.note), text: 'All Notes',),
+              Tab(icon: Icon(Icons.add), text: 'Add Notes',),
+            ],
+          ),
+          ),        
       ),
     );
   }
