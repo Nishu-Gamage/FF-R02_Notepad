@@ -56,6 +56,10 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: Icon(Icons.more_horiz),
           )
         ],
+        flexibleSpace: Image.asset(
+          "assets/AppBar-Background.jpg", 
+          fit:BoxFit.cover,
+        ),
       ),
       body: Center(
         child: Column(
