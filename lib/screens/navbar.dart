@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'add_note.dart';
+import 'display_notes.dart';
 
 class Navbar_Note extends StatelessWidget  {  
   @override
@@ -39,14 +41,11 @@ class Navbar_Note extends StatelessWidget  {
         ),
         body: TabBarView(
           children: [
-            Text("data 1"),
-            Text("data 2"),
-            // displayAllNote(),
-            // addNote(),
+            DisplayNotes(),
+            AddNewNote(),
           ],
         ),
       ),
     );
   }
-
 }
