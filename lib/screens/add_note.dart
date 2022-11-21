@@ -1,48 +1,88 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class AddNewNote extends StatelessWidget {
+class AddNewNote extends StatefulWidget {
+  const AddNewNote({Key? key}) : super(key: key);
+
+  @override
+  State<AddNewNote> createState() => _AddNewNoteForm();
+}
+
+class _AddNewNoteForm extends State<AddNewNote> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  String _noteTitle = '';
+  String _addNote = '';
+
+  Widget _buildNoteTitleField() {
+    return TextFormField(
+        maxLength: 20,
+        decoration: const InputDecoration(hintText: 'Note Title'),
+        validator: (textFieldValue) {
+          if (textFieldValue!.isEmpty) {
+            return "Note Title can't be empty";
+          }
+          return null;
+        },
+        onSaved: (textFieldValue) {
+          _noteTitle = textFieldValue!;
+        });
+  }
+
+  Widget _buildAddNoteField() {
+    return TextFormField(
+        maxLength: 20,
+        decoration: const InputDecoration(hintText: 'Add Note'),
+        validator: (textFieldValue) {
+          if (textFieldValue!.isEmpty) {
+            return "Add Note can't be empty";
+          }
+          return null;
+        },
+        onSaved: (textFieldValue) {
+          _addNote = textFieldValue!;
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController addNoteTitle = TextEditingController();
-    TextEditingController addNewNote = TextEditingController();
-
-    return Container(
-      child: ListView(
-        scrollDirection: Axis.vertical,
-        children: [
-          Container(
-            margin: EdgeInsets.only(top: 50),
-            padding: EdgeInsets.all(10),
-            child: TextField(
-              controller: addNoteTitle,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Note Title',
-              ),
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Form(
+          key: _formKey,
+          child: Container(
+            margin: const EdgeInsets.all(24.0),
+            child: Column(
+              children: <Widget>[
+                _buildNoteTitleField(),
+                _buildAddNoteField(),
+                SizedBox(
+                  height: 100,
+                ),
+                Container(
+                  child: ElevatedButton(
+                      child: Text(
+                        'Save Note',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                        ),
+                      ),
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          _formKey.currentState?.save();
+                          print(_noteTitle);
+                          print(_addNote);
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) => DisplayNotes()));
+                        }
+                      }),
+                ),
+              ],
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(top: 20),
-            padding: EdgeInsets.all(10),
-            child: TextField(
-              controller: addNewNote,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Add Note',
-              ),
-            ),
-          ),
-          Container(
-            height: 50,
-            padding: EdgeInsets.all(10),
-            margin: EdgeInsets.only(top: 20),
-            child: ElevatedButton(
-              child: Text('Submit'),
-              onPressed: () {},
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

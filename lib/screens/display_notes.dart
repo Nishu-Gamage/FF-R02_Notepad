@@ -10,8 +10,8 @@ class DisplayNotes extends StatelessWidget {
       children: [
         ListTile(
           leading: Icon(Icons.brightness_auto),
-          title: Text('For the future (FF-R02)'),
-          subtitle: Text("We are going to make the notepad with flutter"),
+          title: Text('aaaaa'),
+          subtitle: Text("bbbbb"),
           onTap: () {},
         ),
         Divider(),
