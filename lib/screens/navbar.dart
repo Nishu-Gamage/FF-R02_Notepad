@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'add_note.dart';
 import 'display_notes.dart';
 
-class Navbar_Note extends StatelessWidget  {  
+class Navbar_Note extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -11,6 +11,7 @@ class Navbar_Note extends StatelessWidget  {
       child: Scaffold(
         appBar: AppBar(
           title: Text('Notepad'),
+          automaticallyImplyLeading: false,
           actions: [
             IconButton(
               onPressed: () {},
