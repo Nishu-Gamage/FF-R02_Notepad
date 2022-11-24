@@ -1,29 +1,44 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../models/Note.dart';
+import '../models/NotesOperation.dart';
 
 class DisplayNotes extends StatelessWidget {
+  const DisplayNotes({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Consumer<NotesOperationModel>(
+          builder: (context, NotesOperationModel modelData, child) {
+        return ListView.builder(
+            itemCount: modelData.getNotes.length,
+            itemBuilder: (context, index) {
+              return NotesCard(modelData.getNotes[index]);
+            });
+      }),
+    );
+  }
+}
+
+class NotesCard extends StatelessWidget {
+  final NoteModel note;
+
+  const NotesCard(this.note);
+
   @override
   Widget build(BuildContext context) {
     return Container(
-    child: ListView(
-      scrollDirection: Axis.vertical,
-      children: [
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         ListTile(
           leading: Icon(Icons.star),
-          title: Text('New Note Title'),
-          subtitle: Text("New Note Body"),
-          onTap: () {},
+          title: Text(note.noteTitle,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          subtitle: Text(note.noteDescription, style: TextStyle(fontSize: 18)),
         ),
-        Divider(),
-        ListTile(
-          leading: Icon(Icons.star),
-          // leading: Icon(Icons.settings),
-          title: Text('Note 2'),
-          subtitle: Text("sub note"),
-          onTap: () {},
-        ),
-      ],
-    ),
-  );
+        const Divider(),
+      ]),
+    );
   }
 }
