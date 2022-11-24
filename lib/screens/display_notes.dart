@@ -9,14 +9,15 @@ class DisplayNotes extends StatelessWidget {
       scrollDirection: Axis.vertical,
       children: [
         ListTile(
-          leading: Icon(Icons.brightness_auto),
-          title: Text('aaaaa'),
-          subtitle: Text("bbbbb"),
+          leading: Icon(Icons.star),
+          title: Text('New Note Title'),
+          subtitle: Text("New Note Body"),
           onTap: () {},
         ),
         Divider(),
         ListTile(
-          leading: Icon(Icons.settings),
+          leading: Icon(Icons.star),
+          // leading: Icon(Icons.settings),
           title: Text('Note 2'),
           subtitle: Text("sub note"),
           onTap: () {},

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../models/NotesOperation.dart';
+import 'navbar.dart';
 
 class AddNewNote extends StatefulWidget {
   const AddNewNote({Key? key}) : super(key: key);
@@ -19,7 +22,7 @@ class _AddNewNoteForm extends State<AddNewNote> {
         decoration: const InputDecoration(hintText: 'Note Title'),
         validator: (textFieldValue) {
           if (textFieldValue!.isEmpty) {
-            return "Note Title can't be empty";
+            return "Note Title cannot be empty";
           }
           return null;
         },
@@ -34,7 +37,7 @@ class _AddNewNoteForm extends State<AddNewNote> {
         decoration: const InputDecoration(hintText: 'Add Note'),
         validator: (textFieldValue) {
           if (textFieldValue!.isEmpty) {
-            return "Add Note can't be empty";
+            return "Add Note cannot be empty";
           }
           return null;
         },
@@ -70,12 +73,15 @@ class _AddNewNoteForm extends State<AddNewNote> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState?.save();
-                          print(_noteTitle);
-                          print(_addNote);
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => DisplayNotes()));
+                          Provider.of<NotesOperationModel>(context,
+                                  listen: false)
+                              .addNewNote(_noteTitle, _addNote);
+                          // NavigationBar.TabBarView.(DisplayNotes());
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Navbar_Note()),
+                          );
                         }
                       }),
                 ),
