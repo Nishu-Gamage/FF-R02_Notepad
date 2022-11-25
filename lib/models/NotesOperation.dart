@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:notepad/models/Note.dart';
 
 class NotesOperationModel extends ChangeNotifier {
-  List<NoteModel> _notes = <NoteModel>[];
+  final List<NoteModel> _notes = <NoteModel>[];
 
   List<NoteModel> get getNotes {
     return _notes;

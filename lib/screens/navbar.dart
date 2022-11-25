@@ -1,25 +1,26 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'add_note.dart';
 import 'display_notes.dart';
 
-class Navbar_Note extends StatelessWidget {
+class NavbarNote extends StatelessWidget {
+  const NavbarNote({super.key});
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Notepad'),
+          title: const Text('Notepad'),
           automaticallyImplyLeading: false,
           actions: [
             IconButton(
               onPressed: () {},
-              icon: Icon(Icons.search),
+              icon: const Icon(Icons.search),
             ),
             IconButton(
               onPressed: () {},
-              icon: Icon(Icons.more_horiz),
+              icon: const Icon(Icons.more_horiz),
             )
           ],
           flexibleSpace: Image.asset(
@@ -40,7 +41,7 @@ class Navbar_Note extends StatelessWidget {
           ),
           elevation: 5.0,
         ),
-        body: TabBarView(
+        body: const TabBarView(
           children: [
             DisplayNotes(),
             AddNewNote(),

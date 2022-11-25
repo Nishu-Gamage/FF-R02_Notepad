@@ -58,33 +58,30 @@ class _AddNewNoteForm extends State<AddNewNote> {
               children: <Widget>[
                 _buildNoteTitleField(),
                 _buildAddNoteField(),
-                SizedBox(
+                const SizedBox(
                   height: 100,
                 ),
-                Container(
-                  child: ElevatedButton(
-                      child: Text(
-                        'Save Note',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                        ),
+                ElevatedButton(
+                    child: const Text(
+                      'Save Note',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
                       ),
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          _formKey.currentState?.save();
-                          Provider.of<NotesOperationModel>(context,
-                                  listen: false)
-                              .addNewNote(_noteTitle, _addNote);
-                          // NavigationBar.TabBarView.(DisplayNotes());
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Navbar_Note()),
-                          );
-                        }
-                      }),
-                ),
+                    ),
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        _formKey.currentState?.save();
+                        Provider.of<NotesOperationModel>(context,
+                                listen: false)
+                            .addNewNote(_noteTitle, _addNote);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const NavbarNote()),
+                        );
+                      }
+                    }),
               ],
             ),
           ),
